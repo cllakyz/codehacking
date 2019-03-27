@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsersEditRequest;
 use App\Http\Requests\UsersRequest;
 use App\Photo;
 use App\Role;
@@ -82,13 +83,29 @@ class AdminUsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UsersEditRequest  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \App\Http\Requests\UsersEditRequest
      */
-    public function update(Request $request, $id)
+    public function update(UsersEditRequest $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        if(trim($request->password) == ""){
+            $postData = $request->except('password');
+        } else{
+            $postData = $request->all();
+            $postData['password'] = bcrypt($postData['password']);
+        }
+
+        if($file = $request->file('photo_id')){
+            //$fileName = time().$file->getClientOriginalName();
+            $fileName = sha1($file->getClientOriginalName().time()).'.'.$file->getClientOriginalExtension();
+            $file->move('images', $fileName);
+            $photo = Photo::create(['file' => $fileName]);
+            $postData['photo_id'] = $photo->id;
+        }
+        $user->update($postData);
+        return redirect(route('admin.users.index'));
     }
 
     /**
