@@ -1,1 +1,1 @@
-{"version":3,"sources":["app.scss"],"names":[],"mappings":"AAEA;EAAc,eAAe,EAAI","file":"app.css","sourcesContent":["// @import \"node_modules/bootstrap-sass/assets/stylesheets/bootstrap\";\n\n#admin-page { padding-top: 0; }"]}
+{"version":3,"sources":["app.scss"],"names":[],"mappings":"AAEA;EAAa,eAAe,EAAI;;AAChC;EAAiB,iBAAiB,EAAI;;AACtC;EAAgB,cAAc,EAAI","file":"app.css","sourcesContent":["// @import \"node_modules/bootstrap-sass/assets/stylesheets/bootstrap\";\n\n#admin-page{ padding-top: 0; }\n#nested-comment{ margin-top: 60px; }\n.comment-reply{ display: none; }"]}

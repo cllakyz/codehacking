@@ -8,30 +8,28 @@
             <th>Author</th>
             <th>Email</th>
             <th>Body</th>
-            <th>View Post</th>
-            <th>View Replies</th>
+            <th>Post Title</th>
             <th>Change Status</th>
             <th>Delete</th>
         </tr>
         </thead>
         <tbody>
-        @if(count($comments) > 0)
-            @foreach($comments as $comment)
+        @if(count($replies) > 0)
+            @foreach($replies as $reply)
                 <tr>
-                    <td>{{ $comment->id }}</td>
-                    <td>{{ $comment->author }}</td>
-                    <td>{{ $comment->email }}</td>
-                    <td>{{ $comment->body }}</td>
-                    <td><a href="{{ route('home.post', $comment->post->id) }}">{{ $comment->post->title }}</a></td>
-                    <td><a href="{{ route('admin.comment.replies.show', $comment->id) }}"> View Replies</a></td>
+                    <td>{{ $reply->id }}</td>
+                    <td>{{ $reply->author }}</td>
+                    <td>{{ $reply->email }}</td>
+                    <td>{{ $reply->body }}</td>
+                    <td><a href="{{ route('home.post', $reply->comment->post->id) }}">{{ $reply->comment->post->title }}</a></td>
                     <td>
-                        {!! Form::open(['method'=>'PATCH', 'action'=> ['PostCommentsController@update', $comment->id]]) !!}
-                        @if($comment->status == 1)
+                        {!! Form::open(['method'=>'PATCH', 'action'=> ['CommentRepliesController@update', $reply->id]]) !!}
+                        @if($reply->status == 1)
                             <input type="hidden" name="status" value="0">
                             <div class="form-group">
                                 {!! Form::submit('Unapprove', ['class'=>'btn btn-default']) !!}
                             </div>
-                            @else
+                        @else
                             <input type="hidden" name="status" value="1">
                             <div class="form-group">
                                 {!! Form::submit('Approve', ['class'=>'btn btn-success']) !!}
@@ -40,7 +38,7 @@
                         {!! Form::close() !!}
                     </td>
                     <td>
-                        {!! Form::open(['method'=>'DELETE', 'action'=> ['PostCommentsController@destroy', $comment->id]]) !!}
+                        {!! Form::open(['method'=>'DELETE', 'action'=> ['CommentRepliesController@destroy', $reply->id]]) !!}
                         <div class="form-group">
                             {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
                         </div>
@@ -48,8 +46,8 @@
                     </td>
                 </tr>
             @endforeach
-            @else
-            <tr><td colspan="7" class="text-center">No Comments</td></tr>
+        @else
+            <tr><td colspan="7" class="text-center">No Replies</td></tr>
         @endif
         </tbody>
     </table>
