@@ -35,7 +35,7 @@
         @foreach($comments as $comment)
             <div class="media">
                 <a href="#" class="pull-left">
-                    <img height="64" class="media-object" src="{{ $comment->photo }}" alt="{{ $comment->author }}">
+                    <img height="64" class="media-object" src="{{ /*$comment->photo*/Auth::user()->gravatar }}" alt="{{ $comment->author }}">
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">
