@@ -2,19 +2,14 @@
 
 namespace App;
 
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model implements SluggableInterface
+class Post extends Model
 {
-    use SluggableTrait;
-
-    protected $sluggable = [
-        'build_from'    => 'title',
-        'save_to'       => 'slug',
-        'on_update'     => true,
-    ];
+    use Sluggable;
+    use SluggableScopeHelpers;
 
     protected $fillable = [
         'user_id', 'category_id', 'photo_id', 'title', 'body'
@@ -38,5 +33,14 @@ class Post extends Model implements SluggableInterface
     public function comments()
     {
         return $this->hasMany('App\Comment');
+    }
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }
