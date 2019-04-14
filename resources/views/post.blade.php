@@ -7,9 +7,10 @@
     <hr>
     <p><span class="glyphicon glyphicon-time"> Posted {{ $post->created_at->diffForhumans() }}</span></p>
     <hr>
-    <img class="img-responsive" src="{{ $post->photo->file }}" alt="{{ $post->title }}">
+    <img class="img-responsive" src="{{ $post->photo ? $post->photo->file : $post->photoPlaceholder() }}" alt="{{ $post->title }}">
     <hr>
-    <p>{{ $post->body }}</p>
+    {{--<p>{{ $post->body }}</p>--}}
+    {!! $post->body !!}
     <hr>
     @if(Session::has('comment_message'))
         {{ session('comment_message') }}
