@@ -6,8 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=5.9.9",
-        "laravel/framework": "5.6.*",
-        "laravelcollective/html": "5.5.*",
+        "laravel/framework": "5.7.*",
+        "laravelcollective/html": "*",
         "cviebrock/eloquent-sluggable": "^4.3",
         "unisharp/laravel-filemanager": "^1.9",
         "intervention/image": "^2.4"
