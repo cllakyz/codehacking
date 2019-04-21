@@ -35,7 +35,7 @@ $('#to-previous').click(function () {
   goTo(previous_dir);
 });
 
-$('#add-folder').click(function () {
+$('#add-front').click(function () {
   bootbox.prompt(lang['message-name'], function (result) {
     if (result == null) return;
     createFolder(result);
@@ -99,7 +99,7 @@ $(document).on('click', '.file-item', function (e) {
   useFile($(this).data('id'));
 });
 
-$(document).on('click', '.folder-item', function (e) {
+$(document).on('click', '.front-item', function (e) {
   goTo($(this).data('id'));
 });
 
@@ -121,7 +121,7 @@ function dir_starts_with(str) {
 }
 
 function setOpenFolders() {
-  var folders = $('.folder-item');
+  var folders = $('.front-item');
 
   for (var i = folders.length - 1; i >= 0; i--) {
     // close folders that are not parent
