@@ -5,7 +5,7 @@
     @endif
     <h1>Medias</h1>
     @if($photos)
-        <form action="/delete/media" method="post" class="form-inline">
+        <form action="delete/media" method="post" class="form-inline">
             {{ csrf_field() }}
             {{ method_field('delete') }}
             <div class="form-group">
