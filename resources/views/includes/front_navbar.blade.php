@@ -17,7 +17,9 @@
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
                     @else
-                    <li><a href="{{ route('admin.index') }}" target="_blank">Admin</a></li>
+                    @if(Auth::user()->isAdmin())
+                        <li><a href="{{ route('admin.index') }}" target="_blank">Admin</a></li>
+                    @endif
                     <li><a href="{{ route('logout') }}">Logout</a></li>
                 @endif
             </ul>

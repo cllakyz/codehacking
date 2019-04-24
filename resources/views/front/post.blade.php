@@ -19,7 +19,7 @@
             @if(Auth::check())
                 <div class="well">
                     <h4>Leave a Comment:</h4>
-                    {!! Form::open(['method'=>'POST', 'action'=> 'PostCommentsController@store']) !!}
+                    {!! Form::open(['method'=>'POST', 'action'=> 'PostCommentsController@createComment']) !!}
                     <input type="hidden" name="post_id" value="{{ $post->id }}">
                     <div class="form-group">
                         {!! Form::label('body', 'Body:') !!}
